@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<title>新建資料</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	
+	 
+
+</style>
+
+	<script src="HTTP2019.js"></script>
+
+	</head>
+	
+	<script>
+            
+            
+            function getData() {
+                //HTTPGetData("http://203.64.84.214:8003/httptest/Get.aspx?id=miPersondata");
+                HTTPGetData("http://203.64.84.113/JSON/Get.aspx?id=data001");
+            }
+
+            function showData() {
+                // alert(ret);
+                // ret defined in HTTP2019.js for keep the response value
+                var myObj = JSON.parse(ret);
+              //  alert(myObj.length);
+
+              //  var obj = JSON.parse('{"name": "", "telecom": 0, "gender": "", "birthDate": ""}');
+                var tableStr = "<tr><th>姓名</th> <th >電話</th><th>性別</th><th>出生日期</th></tr>";
+
+                for (i =48; i < myObj.length; i++) {
+                     // alert(myObj[i].name);
+                    var trStr = "<tr>";
+
+                    trStr = trStr + "<td>";
+                    trStr = trStr + myObj[i].name;
+                    trStr = trStr + "</td>";
+
+                    trStr = trStr + "<td>";
+                    trStr = trStr + myObj[i].telecom;
+                    trStr = trStr + "</td>";
+
+                    trStr = trStr + "<td>";
+                    trStr = trStr + myObj[i].gender;
+                    trStr = trStr + "</td>";
+
+                    trStr = trStr + "<td>";
+                    trStr = trStr + myObj[i].birthDate;
+                    trStr = trStr + "</td>";
+
+                    trStr = trStr + "</tr>";
+                    tableStr = tableStr + trStr;
+                }
+            
+                // 表格字串字串在id為"t1"的"table"標簽内
+                document.getElementById("t1").innerHTML = tableStr;
+
+               
+            }
+        </script>
+
+	<script>
+        var a;
+        var obj = JSON.parse('{"name": "", "telecom":0, "birthDate":""}');
+
+        function myFunction() {
+            obj.name = document.getElementById("name").value;
+            obj.telecom = document.getElementById("phone").value;
+           
+            obj.birthDate = document.getElementById("birth").value;
+            var myJSONstr = JSON.stringify(obj);
+            //alert(myJSONstr);
+            //var encodedData = btoa(myJSONstr);
+            HTTPPostData("http://203.64.84.113/JSON/Post.aspx?id=data001", myJSONstr);
+        }
+    </script>
+
+	
+	
+	<body>
+
+		<header id="header">
+				<h1><a href="index.html"><font face="微軟正黑體" >回首頁</font></a></h1>
+				<a href="#nav"  ><font face="微軟正黑體">選單</font></a>
+			</header>
+			
+
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html"><font face="微軟正黑體">首頁</font></a></li>
+					<li><a href="generic.html"><font face="微軟正黑體">課程</font></a></li>
+					<li><a href="elements.html"><font face="微軟正黑體">新增學生帳號</font></a></li>
+				</ul>
+			</nav>
+		<!-- Main -->
+		
+		
+
+			<section id="main" class="wrapper">
+				<div class="container">
+					<header class="major special">
+						<h2><font face="微軟正黑體">新增學生帳號</font></h2>
+						<p><font face="微軟正黑體">輸入你的基本資料，讓我們了解你</font></p>
+					</header>
+
+					<!-- Form -->
+						<section>
+							<h3>Form</h3>
+							<form method="post" action="#">
+								<div class="row uniform 50%">
+									<div class="6u 12u$(xsmall)">
+									姓名：
+										<input type="text" name="name" id="name" value="" placeholder="姓名" />
+									</div>
+									<div class="6u 12u$(xsmall)">
+									電話：
+										<input type="text" name="telecom" id="telecom" value="" placeholder="手機號碼" />
+									</div>
+								
+									<div class="2u 12u$(xsmall)">
+									性別：<br>
+										<input type="radio" id="male" name="gender" checked>
+										<label for="male">男性</label>
+									</div>
+									<div class="2u 12u$(xsmall)">
+									<br>
+										<input type="radio" id="female" name="gender">
+										<label for="female">女性</label>
+									</div>
+									<div class="2u 12u$(xsmall)">
+									<br>
+										<input type="radio" id="other" name="gender">
+										<label for="other">其他性別</label>
+									</div>
+									<div class="6u 12u$(xsmall)">
+									生日：
+										<input type="text" name="birth" id="birth" value="" placeholder="生日(格式範例:1999-09-09)" />
+									</div>
+									<div class="12u$">
+										<ul class="actions">
+										
+											<li><input type="button" onclick="myFunction()" value="Send Message" class="special" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+					
+				</div>
+			</section>
+			
+		
+
+		<footer id="footer">
+				<div class="inner">
+					
+					<ul class="copyright">
+						<li> 慈大網頁程式設計一期末專案  </li> 
+						<li>設計者：吳岱燁  </li>
+						<li>參考資料來源: <a href="https://sites.google.com/site/phyelearning/2b01/01_linear_motion">高二物理教育網直線運動</a>.</li>
+					</ul>
+				</div>
+			</footer>
+			
+				<p>
+        <input id="Button1" onclick="getData();"  type="button" value="取得學生更新資料" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="Button2" onclick="showData();" type="button" value="列出所有學生基本資料" /></p>
+        <table id = "t1"   />
+		
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
